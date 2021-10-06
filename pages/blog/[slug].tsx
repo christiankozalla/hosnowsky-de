@@ -12,8 +12,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch("https://hosnowsky.de/wp-json/wp/v2/posts");
-  const posts = await response.json();
+  const posts = await getPosts();
 
   const paths = posts.map((post: any) => ({ params: { slug: post.slug } }));
   return {
