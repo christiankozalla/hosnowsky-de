@@ -1,0 +1,5 @@
+$text-green: #7f8979;
+
+$navbar-gray-dark: #4c4c4c;
+
+$navbar-green-dark: #76836d;
