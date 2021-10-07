@@ -1,8 +1,8 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
-import { getPosts, Post } from "../../lib/api";
+import { getContent, Page } from "../../lib/api";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPosts();
+  const posts = await getContent("posts");
 
   return {
     props: {
@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPosts();
+  const posts = await getContent("posts");
 
   const paths = posts.map((post: any) => ({ params: { slug: post.slug } }));
   return {
@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const BlogPost: NextPage<{ posts: Post[] }> = ({ posts }) => {
+const BlogPost: NextPage<{ posts: Page[] }> = ({ posts }) => {
   return (
     <div>
       Hello from BlogPost

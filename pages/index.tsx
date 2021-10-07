@@ -1,7 +1,14 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
+import { API_BASE_URL } from "../lib/api";
 
-const Home: NextPage = ({}) => {
-  return <div>Hello from Index</div>;
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
+
+const Home: NextPage = () => {
+  return <div>Hello from Home</div>;
 };
 
 export default Home;

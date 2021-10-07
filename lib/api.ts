@@ -1,4 +1,4 @@
-export type Post = {
+export type Page = {
   id: number;
   date: string;
   slug: string;
@@ -8,8 +8,14 @@ export type Post = {
   exerpt: string;
 };
 
-export const getPosts = async (): Promise<Post[]> => {
-  const response = await fetch("https://hosnowsky.de/wp-json/wp/v2/posts");
+export type ContentCategory = "pages" | "posts" | "media";
+
+export const API_BASE_URL = "https://hosnowsky.de/wp-json/wp/v2";
+
+export const getContent = async (
+  category: ContentCategory
+): Promise<Page[]> => {
+  const response = await fetch(`${API_BASE_URL}/${category}`);
   const rawPosts = await response.json();
 
   const posts = rawPosts.map((post: any) => ({
