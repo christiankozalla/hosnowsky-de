@@ -13,6 +13,7 @@ export type Page = {
 
 export interface Params extends ParsedUrlQuery {
   page: Route;
+  slug: string;
 }
 
 type Route =
@@ -27,19 +28,37 @@ export type ContentCategory = "pages" | "posts" | "media";
 export type PageRoutes = `pages?slug=${Route}`;
 
 export const getContent = async (
-  category: ContentCategory | PageRoutes
+  category: PageRoutes | ContentCategory | string
 ): Promise<Page[]> => {
   const response = await fetch(`${API_BASE_URL}/${category}`);
-  const rawPosts = await response.json();
+  const rawContent = await response.json();
 
-  const posts = rawPosts.map((post: any) => ({
-    id: post.id,
-    date: post.date,
-    slug: post.slug,
-    status: post.status,
-    title: post.title.rendered,
-    content: post.content.rendered,
-    exerpt: post.excerpt.rendered,
-  }));
-  return posts;
+  if (rawContent.slug === "blogger") {
+    console.log(rawContent);
+    return [];
+  }
+
+  if (Array.isArray(rawContent)) {
+    return rawContent.map<Page>((data: any) => ({
+      id: data.id,
+      date: data.date,
+      slug: data.slug,
+      status: data.status,
+      title: data.title.rendered,
+      content: data.content.rendered,
+      exerpt: data.excerpt.rendered,
+    }));
+  } else {
+    return [
+      {
+        id: rawContent.id,
+        date: rawContent.date,
+        slug: rawContent.slug,
+        status: rawContent.status,
+        title: rawContent.title.rendered,
+        content: rawContent.content.rendered,
+        exerpt: rawContent.exerpt.rendered,
+      },
+    ];
+  }
 };

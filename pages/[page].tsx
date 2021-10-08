@@ -3,7 +3,7 @@ import { getContent, Page, Params } from "../lib/api";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getContent("pages");
-  const paths = pages.map((page: any) => ({ params: { page: page.slug } }));
+  const paths = pages.map((page: Page) => ({ params: { page: page.slug } }));
 
   return {
     paths,
