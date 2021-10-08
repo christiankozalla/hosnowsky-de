@@ -1,19 +1,8 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { getContent, Page } from "../lib/api";
-
-export const getStaticProps: GetStaticProps = async () => {
-  const pages = await getContent("pages");
-
-  return {
-    props: {
-      pages,
-    },
-  };
-};
+import { getContent, Page, Params } from "../lib/api";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getContent("pages");
-
   const paths = pages.map((page: any) => ({ params: { page: page.slug } }));
 
   return {
@@ -22,20 +11,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const PageRoot: NextPage<{ pages: Page[] }> = ({ pages }) => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { page } = context.params as Params; // page will be defined
+  const [pageContent] = await getContent(`pages?slug=${page}`);
+
+  return {
+    props: {
+      page: pageContent,
+    },
+  };
+};
+
+const PageRoot: NextPage<{ page: Page }> = ({ page }) => {
   return (
     <div>
-      Hello from Page
-      <div>
-        {pages.map((page) => (
-          <div key={page.id}>
-            <h1 dangerouslySetInnerHTML={{ __html: page.title }} />
-            <article
-              dangerouslySetInnerHTML={{ __html: page.content }}
-            ></article>
-          </div>
-        ))}
-      </div>
+      <h1>Hello from Page {page.slug}</h1>
+      <h2 dangerouslySetInnerHTML={{ __html: page.title }} />
+      <div dangerouslySetInnerHTML={{ __html: page.exerpt }} />
+      <article dangerouslySetInnerHTML={{ __html: page.content }}></article>
     </div>
   );
 };

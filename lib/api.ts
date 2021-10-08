@@ -1,3 +1,6 @@
+import { ParsedUrlQuery } from "querystring";
+export const API_BASE_URL = "https://hosnowsky.de/wp-json/wp/v2";
+
 export type Page = {
   id: number;
   date: string;
@@ -8,12 +11,23 @@ export type Page = {
   exerpt: string;
 };
 
-export type ContentCategory = "pages" | "posts" | "media";
+export interface Params extends ParsedUrlQuery {
+  page: Route;
+}
 
-export const API_BASE_URL = "https://hosnowsky.de/wp-json/wp/v2";
+type Route =
+  | "herbst"
+  | "blogger"
+  | "ueber-mich"
+  | "gallerie"
+  | "leistungen"
+  | "home";
+
+export type ContentCategory = "pages" | "posts" | "media";
+export type PageRoutes = `pages?slug=${Route}`;
 
 export const getContent = async (
-  category: ContentCategory
+  category: ContentCategory | PageRoutes
 ): Promise<Page[]> => {
   const response = await fetch(`${API_BASE_URL}/${category}`);
   const rawPosts = await response.json();
