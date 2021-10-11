@@ -1,5 +1,6 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import { getContent, Page, Params } from "../../lib/api";
+import { Layout } from "../../components/Layout";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as Params;
@@ -8,6 +9,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       post,
+      currentPathname: slug,
     },
   };
 };
@@ -22,13 +24,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const BlogPost: NextPage<{ post: Page }> = ({ post }) => {
+const BlogPost: NextPage<{ post: Page; currentPathname: string }> = ({
+  post,
+  currentPathname,
+}) => {
   return (
-    <div>
+    <Layout currentPathname={currentPathname}>
       Hello from BlogPost
       <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
       <article dangerouslySetInnerHTML={{ __html: post.content }}></article>
-    </div>
+    </Layout>
   );
 };
 

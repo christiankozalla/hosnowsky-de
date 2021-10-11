@@ -1,5 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
-import { getContent, Page, Params } from "../lib/api";
+import { getContent, Page } from "../lib/api";
+import { Layout } from "../components/Layout";
 
 export const getStaticProps: GetStaticProps = async () => {
   const [pageContent] = await getContent("pages?slug=home");
@@ -13,12 +14,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const Home: NextPage<{ page: Page }> = ({ page }) => {
   return (
-    <div>
-      <h1>Hello from Page {page.slug}</h1>
-      <h2 dangerouslySetInnerHTML={{ __html: page.title }} />
-      <div dangerouslySetInnerHTML={{ __html: page.exerpt }} />
-      <article dangerouslySetInnerHTML={{ __html: page.content }}></article>
-    </div>
+    <Layout currentPathname={"/"}>
+      <section
+        role="main"
+        dangerouslySetInnerHTML={{ __html: page.content }}
+      ></section>
+    </Layout>
   );
 };
 
