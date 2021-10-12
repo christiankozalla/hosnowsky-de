@@ -22,70 +22,68 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
 
   return (
     <>
-      <header ref={navigation}>
-        <div className="x-navbar width">
-          <h1 className="visually-hidden">Hosnowsky</h1>
-          <Link href="/">
-            <span className="x-brand">
-              <img
-                src="https://www.hosnowsky.de/wordpress/wp-content/uploads/2021/01/Logo_Menue-300x36.png"
-                alt="Hosnowsky Paar- und Familienfotografie Logo"
-              />
-            </span>
-          </Link>
-          <nav>
-            <ul>
-              <li>
-                <Link href="/">
-                  <a className={isActiveRoute("/")}>Home</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/herbst">
-                  <a className={isActiveRoute("herbst")}>Herbst Aktion</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/ueber-mich">
-                  <a className={isActiveRoute("ueber-mich")}>Über mich</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/leistungen">
-                  <a className={isActiveRoute("leistungen")}>Leistungen</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallerie">
-                  <a className={isActiveRoute("gallerie")}>Galerie</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/blogger">
-                  <a className={isActiveRoute("blogger")}>Blog</a>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <button className="menu-button" onClick={toggleMenu}>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
+      <header ref={navigation} className="x-navbar width">
+        <h1 className="visually-hidden">Hosnowsky</h1>
+        <Link href="/">
+          <span className="x-brand">
+            <img
+              src="https://www.hosnowsky.de/wordpress/wp-content/uploads/2021/01/Logo_Menue-300x36.png"
+              alt="Hosnowsky Paar- und Familienfotografie Logo"
+            />
+          </span>
+        </Link>
+        <nav>
+          <ul>
+            <li>
+              <Link href="/">
+                <a className={isActiveRoute("/")}>Home</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/herbst">
+                <a className={isActiveRoute("herbst")}>Herbst Aktion</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/ueber-mich">
+                <a className={isActiveRoute("ueber-mich")}>Über mich</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/leistungen">
+                <a className={isActiveRoute("leistungen")}>Leistungen</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/gallerie">
+                <a className={isActiveRoute("gallerie")}>Galerie</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blogger">
+                <a className={isActiveRoute("blogger")}>Blog</a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <button className="menu-button" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="menu-overlay"></div>
       </header>
       {children}
       <footer>Hello from footer</footer>
       <style jsx>{`
         header {
+          width: 100%;
           position: fixed;
+          height: 70px;
           top: 0;
-          left: 0;
-          right: 0;
           background-color: white;
         }
 
         .x-navbar {
-          margin-right: 4%;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -94,6 +92,7 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
         nav ul {
           display: flex;
           justify-content: space-between;
+          margin-right: 50px;
         }
 
         nav li {
@@ -129,13 +128,23 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
           display: none;
         }
 
+        #menu-overlay {
+          display: none;
+        }
+
         @media only screen and (max-width: 1200px) {
           nav {
             display: none;
           }
 
-          header.mobile-menu {
-            bottom: 0;
+          header.mobile-menu #menu-overlay {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            background-color: white;
+            z-index: -1;
           }
 
           header.mobile-menu nav {
@@ -159,6 +168,7 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
             outline: none;
             border: none;
             background-color: transparent;
+            margin-right: 30px;
           }
 
           .menu-button:hover {
