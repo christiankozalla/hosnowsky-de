@@ -34,7 +34,6 @@ export const getContent = async (
   const rawContent = await response.json();
 
   if (rawContent.slug === "blogger") {
-    console.log(rawContent);
     return [];
   }
 
