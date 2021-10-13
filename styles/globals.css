@@ -30,6 +30,9 @@ a {
   --secondary: #9ac8eb;
   --green-dark: #76836d;
   --gray-dark: #4c4c4c;
+  --screen-sm: 768px;
+  --screen-md: 992px;
+  --screen-lg: 1200px;
 }
 
 /* Utility */
@@ -45,4 +48,61 @@ a {
 
 .x-container {
   margin: 0 auto;
+}
+/*
+.x-section {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+
+[class*="x-bg"] {
+}
+
+.x-bg {
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+.x-bg-layer-upper-img img {
+  width: 100%;
+}
+
+.x-row {
+  position: absolute;
+}
+ */
+
+#cs-content {
+  width: 100%;
+  margin-top: 70px;
+}
+
+.x-section {
+  position: relative; /* Anchor for absolutely positioned elements */
+}
+
+.x-bg {
+  position: absolute;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  .x-section.x-hide-md,
+  .x-section.x-hide-lg,
+  .x-section.x-hide-xl {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .x-section.x-hide-sm,
+  .x-section.x-hide-xs {
+    display: none;
+  }
 }
