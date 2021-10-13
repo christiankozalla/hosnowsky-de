@@ -81,6 +81,7 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
           height: 70px;
           top: 0;
           background-color: white;
+          z-index: 5;
         }
 
         .x-navbar {
@@ -141,26 +142,27 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
             display: block;
             width: 100vw;
             height: 100vh;
-            position: absolute;
+            position: fixed;
             top: 0;
+            bottom: 0;
             background-color: white;
             z-index: -1;
           }
 
           header.mobile-menu nav {
             display: block;
+            height: 100%;
+            margin-top: 70px;
           }
 
           header.mobile-menu nav ul {
             display: block;
-            position: absolute;
-            transform: translate(-100%, 50%);
           }
 
           header.mobile-menu nav ul li {
             font-size: 2rem;
             font-weight: 700;
-            margin: 2rem;
+            margin: 2rem 0;
           }
 
           .menu-button {
