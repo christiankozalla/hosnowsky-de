@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Helvetica, Arial, sans-serif, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
   line-height: 1.8;
   color: rgb(75, 85, 99);
 }
@@ -45,7 +46,7 @@ a {
   border: 0;
   padding: 0;
 }
-
+/*
 #cs-content {
   width: 100%;
   margin-top: 70px;
@@ -57,7 +58,7 @@ a {
 }
 
 .x-section {
-  position: relative; /* Containing Block: Anchor for absolutely positioned elements */
+  position: relative; 
   height: fit-content(max-content, 100%);
 }
 
@@ -91,3 +92,4 @@ img {
     display: none;
   }
 }
+*/
