@@ -46,41 +46,19 @@ a {
   padding: 0;
 }
 
-.x-container {
-  margin: 0 auto;
-}
-/*
-.x-section {
-  margin-bottom: 50px;
-  position: relative;
-}
-
-
-[class*="x-bg"] {
-}
-
-.x-bg {
-  width: 90%;
-  margin: 0 auto;
-}
-
-
-.x-bg-layer-upper-img img {
-  width: 100%;
-}
-
-.x-row {
-  position: absolute;
-}
- */
-
 #cs-content {
   width: 100%;
   margin-top: 70px;
+  overflow-x: hidden;
+}
+
+.x-container {
+  margin: 0 auto;
 }
 
 .x-section {
-  position: relative; /* Anchor for absolutely positioned elements */
+  position: relative; /* Containing Block: Anchor for absolutely positioned elements */
+  height: fit-content(max-content, 100%);
 }
 
 .x-bg {
@@ -90,6 +68,13 @@ a {
 img {
   display: block;
   max-width: 100%;
+}
+
+.x-image img {
+  position: absolute;
+  right: 0;
+
+  z-index: 3;
 }
 
 @media only screen and (min-width: 992px) {
