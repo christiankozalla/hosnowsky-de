@@ -26,6 +26,10 @@ export const getStaticProps: GetStaticProps = async () => {
         "Ich mache auch klassische Bilder von Paaren, die einander Vertrauen, von deren Hochzeit, von der Vorfreude eines Babybauchs über die Geburt und das maßlose Glück über ein Neugeborenes.",
       ],
     },
+    callToAction: {
+      text: "Mehr über mich",
+      url: "/ueber-mich",
+    },
   };
   return {
     props: {
@@ -41,6 +45,7 @@ const Home: NextPage<{
       decorator?: { url: string };
     };
     text: Text;
+    callToAction: { text: string; url: string };
   };
 }> = ({ page }) => {
   return (
@@ -51,7 +56,7 @@ const Home: NextPage<{
           decorator={page.jumbotron.decorator}
         />
         <SectionText text={page.text} />
-        <CallToAction />
+        <CallToAction callToAction={page.callToAction} />
       </section>
     </Layout>
   );
