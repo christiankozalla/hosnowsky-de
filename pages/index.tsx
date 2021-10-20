@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
     jumbotron: {
       image: {
         url: "https://i2.wp.com/www.hosnowsky.de/wordpress/wp-content/uploads/2021/10/Im-Sommer-Bearbeitet-2-scaled.jpg?fit=2560%2C1316&amp;ssl=1",
-        alt: "Ein Mädchen pflückt Blumen",
+        alt: "Ein Kind pflückt Blumen",
       },
       decorator: {
         url: "https://i1.wp.com/www.hosnowsky.de/wordpress/wp-content/uploads/2021/01/cropped-Logo.png?fit=300%2C300&amp;ssl=1",
@@ -50,7 +50,7 @@ const Home: NextPage<{
 }> = ({ page }) => {
   return (
     <Layout currentPathname={"/"}>
-      <section role="main">
+      <section role="main" style={{ marginTop: "70px" }}>
         <Jumbotron
           image={page.jumbotron.image}
           decorator={page.jumbotron.decorator}
