@@ -5,6 +5,7 @@ import {
   useRef,
 } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Layout: FunctionComponent<{ currentPathname: string }> = ({
   currentPathname,
@@ -36,12 +37,12 @@ export const Layout: FunctionComponent<{ currentPathname: string }> = ({
         <div className="wrapper">
           <div className="site-head__inner">
             <Link href="/">
-              <span className="site-head__brand">
-                <img
+              <a className="site-head__brand">
+                <Image
                   src="https://www.hosnowsky.de/wordpress/wp-content/uploads/2021/01/Logo_Menue-300x36.png"
                   alt="Hosnowsky Paar- und Familienfotografie Logo"
                 />
-              </span>
+              </a>
             </Link>
 
             <div className="burger-menu" ref={burgerMenu}>
