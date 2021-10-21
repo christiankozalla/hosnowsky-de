@@ -4,7 +4,9 @@ import { Layout } from "../components/Layout";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getContent("pages");
-  const paths = pages.map((page: Page) => ({ params: { page: page.slug } }));
+  let paths = pages.map((page: Page) => ({ params: { page: page.slug } }));
+
+  paths = paths.filter((path) => path.params.page !== "blogger");
 
   return {
     paths,
