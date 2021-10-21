@@ -26,13 +26,19 @@ a {
 
 /* Variables */
 :root {
-  --primary: #7f8979;
-  --secondary: #9ac8eb;
-  --green-dark: #76836d;
-  --gray-dark: #4c4c4c;
+  --color-primary: #7f8979;
+  --color-primary-shade: #76836d;
+  --color-light: #ffffff;
+  --color-dark: #4c4c4c;
   --screen-sm: 768px;
   --screen-md: 992px;
   --screen-lg: 1200px;
+  --flow-space: 1em;
+}
+
+:focus {
+  outline: 1px dotted var(--color-primary);
+  outline-offset: 0.2rem;
 }
 
 /* Utility */
@@ -46,48 +52,14 @@ a {
   padding: 0;
 }
 
-#cs-content {
-  width: 100%;
-  margin-top: 70px;
-  overflow-x: hidden;
+.wrapper {
+  max-width: 65rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
-.x-container {
-  margin: 0 auto;
-}
-
-.x-section {
-  position: relative; /* Containing Block: Anchor for absolutely positioned elements */
-  height: fit-content(max-content, 100%);
-}
-
-.x-bg {
-  position: absolute;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-.x-image img {
-  position: absolute;
-  right: 0;
-
-  z-index: 3;
-}
-
-@media only screen and (min-width: 992px) {
-  .x-section.x-hide-md,
-  .x-section.x-hide-lg,
-  .x-section.x-hide-xl {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 992px) {
-  .x-section.x-hide-sm,
-  .x-section.x-hide-xs {
-    display: none;
-  }
+.flow > * + * {
+  margin-top: var(--flow-space, 1em);
 }
